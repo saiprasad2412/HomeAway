@@ -1,5 +1,8 @@
 @import "../../responsive.scss";
 
+.singlePage::-webkit-scrollbar {
+  display: none;
+}
 .singlePage {
   display: flex;
   height: 100%;
@@ -8,11 +11,14 @@
     flex-direction: column;
     overflow: scroll;
   }
+  .details::-webkit-scrollbar {
+    display: none;
+  }
 
   .details {
     flex: 3;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     @include md {
       flex: none;
@@ -100,16 +106,21 @@
       }
     }
   }
+  .features::-webkit-scrollbar {
+    display: none;
+  }
   .features {
     flex: 2;
     background-color: #fcf5f3;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     @include md {
       flex: none;
       height: max-content;
       margin-bottom: 50px;
+      
+  
     }
 
     .wrapper {
