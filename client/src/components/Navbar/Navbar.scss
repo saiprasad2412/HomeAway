@@ -54,9 +54,9 @@ nav {
     background-color: #fcf5f3;
     height: 100%;
 
-    @include md {
-      background-color: transparent;
-    }
+    // @include md {
+    //   background-color: transparent;
+    // }
 
     a {
       padding: 12px 24px;
