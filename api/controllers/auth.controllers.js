@@ -54,7 +54,7 @@ export const loginController=async(req,res)=>{
         if(!isPasswordCorrect){
             return res.status(401).json({message:"Invalid credentials"});
         }
-
+        console.log("user",user);
         const {password:userPassord, ...userInfo}=user
         //generate cookies token
         const age= 1000*60*60*24*7;

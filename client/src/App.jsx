@@ -4,11 +4,12 @@ import {createBrowserRouter,
     RouterProvider,
 } from 'react-router-dom'
 import ListPage from "./routes/listPage/listPage"
-import Layout from "./routes/layout/Layout"
+import  {Layout, RequireAuth } from "./routes/layout/Layout"
 import SinglePage from "./routes/singlePage/SinglePage"
 import Profile from "./routes/profile/Profile"
 import Login from "./routes/login/Login"
 import Register from "./routes/register/Register"
+import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage"
 function App() {
   const router=createBrowserRouter([
     {
@@ -27,10 +28,7 @@ function App() {
           path:'/:id',
           element:<SinglePage/>
         },
-        {
-          path:'/profile',
-          element:<Profile/>
-        },
+        
         {
           path:"/login",
           element:<Login/>
@@ -39,6 +37,21 @@ function App() {
           path:"/register",
           element:<Register/>
         }
+      ]
+    },
+    {
+      path:"/",
+      element:<RequireAuth/>,
+      children:[
+        {
+          path:'/profile',
+          element:<Profile/>
+        },
+        {
+          path:'/profile/update',
+          element:<ProfileUpdatePage />
+        },
+
       ]
     }
     

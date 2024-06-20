@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 export const verifyToken = (req, res, next) => {
-    const token= req.cookies.access_token;
+    const token= req.cookies.token;
+    console.log(token);
     if(!token){
         return res.status(401).json({message:"Please login first"});
     }
@@ -9,6 +10,7 @@ export const verifyToken = (req, res, next) => {
             return res.status(401).json({message:"Please login first"});
         }
         req.userId= user.id;
+        console.log(req.userId);
         next();
     })
 }

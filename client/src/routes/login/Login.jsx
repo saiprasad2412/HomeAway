@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./Login.scss"
 import { Link, useNavigate } from 'react-router-dom'
 import apiRequest from '../../lib/apiRequest'
+import { AuthContext } from '../../context/AuthContext'
 const Login = () => {
   const [err , setErr]=useState("");
     const [isLoading , setIsLoading]=useState(false);
-    const navigate =useNavigate()
+    const {updateUser}=useContext(AuthContext)
+    const navigate =useNavigate();
+
   const handleSubmit=async(e)=>{
     e.preventDefault();
     setIsLoading(true);
@@ -18,7 +21,8 @@ const Login = () => {
       const res= await apiRequest.post("auth/login",{
         email,password
       })
-      localStorage.setItem("user", JSON.stringify(res.data));
+      console.log("login",res.data);
+      updateUser(res.data);
       navigate("/")
     } catch (error) {
       setErr(error.response.data.message);
