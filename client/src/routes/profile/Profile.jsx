@@ -1,8 +1,20 @@
 import React from 'react'
 import "./Profile.scss"
 import List from '../../components/list/List'
-import Chat from '../../components/Chat/Chat'
+import Chat from '../../components/Chat/Chat';
+import apiRequest from"../../lib/apiRequest.js"
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
+  const navigate =useNavigate()
+  const handleLogout = async() => {
+    try {
+      const res = apiRequest .post("auth/logout");
+      localStorage.removeItem("user");
+      navigate("/")
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="profilePage">
       <div className="details">
@@ -25,6 +37,7 @@ const Profile = () => {
             <span>
               E-mail: <b>john@gmail.com</b>
             </span>
+            <button onClick={handleLogout}>Logout</button>
           </div>
           <div className="title">
             <h1>My List</h1>

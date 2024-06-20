@@ -54,6 +54,8 @@ export const loginController=async(req,res)=>{
         if(!isPasswordCorrect){
             return res.status(401).json({message:"Invalid credentials"});
         }
+
+        const {password:userPassord, ...userInfo}=user
         //generate cookies token
         const age= 1000*60*60*24*7;
 
@@ -67,10 +69,11 @@ export const loginController=async(req,res)=>{
             httpOnly:true,
             // secure:true , //for production
             maxAge:age})
-        .status(200).json({message:"Login successful",user});
+        .status(200).json({message:"Login successful",userInfo});
         
     } catch (error) {
-        
+        console.log(error);
+        res.status(500).json({message:"Failed to login"});
     }
  };
 export const logOutController=(req,res)=>{ 
