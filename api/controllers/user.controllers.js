@@ -105,9 +105,9 @@ console.log("update ");
       },
     });
 
-    const { password: userPassword, ...rest } = updatedUser;
+    const { password: userPassword, ...userInfo } = updatedUser;
 
-    res.status(200).json(rest);
+    res.status(200).json({message:"user goy updated",userInfo});
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to update users!" });
