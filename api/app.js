@@ -13,7 +13,7 @@ dotenv.config({
 app.use(cors({origin:process.env.CLIENT_URL,credentials:true}))
 app.use(express.json());
 app.use(cookieParser());
-app.use('/api/v1/post',postRoute)
+app.use('/api/v1/posts',postRoute)
 app.use('/api/v1/auth',authRoute)
 app.use('/api/v1/test',testRoute)
 app.use("/api/v1/users",userRoute)
