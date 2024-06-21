@@ -17,4 +17,4 @@ app.use('/api/v1/post',postRoute)
 app.use('/api/v1/auth',authRoute)
 app.use('/api/v1/test',testRoute)
 app.use("/api/v1/users",userRoute)
-app.listen(8000, () => console.log('Server running on port 3000'));
+app.listen(8000, () => console.log('Server running on port 8000'));
