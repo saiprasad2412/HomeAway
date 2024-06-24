@@ -17,7 +17,16 @@ export const getPostController = async (req, res) => {
         const post = await prisma.post.findUnique({
             where: {
                 id
-            }
+            },
+            include: {
+                postDetail: true,
+                user: {
+                  select: {
+                    username: true,
+                    avatar: true,
+                  },
+                },
+              },
         })
         res.status(200).json({post});
     } catch (error) {
@@ -32,14 +41,17 @@ export const addPostController = async (req, res) => {
     try {
         const newPost = await prisma.post.create({
             data:{
-                ...body,
-                userId: tokenUserId
-            }
-        })
+                ...body.postData,
+                userId: tokenUserId,
+                postDetail:{
+                    create: body.postDetail
+                },
+            },
+        });
         res.status(200).json({newPost});
     } catch (error) {
         console.log(error);
-        res.status(500).json({message: "Failed to add post"});
+        res.status(500).json({message: "Failed to create post"});
     }
 };
 
