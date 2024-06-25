@@ -15,11 +15,10 @@ export const AuthContextProvider = ({ children }) => {
 useEffect(()=>{
   const user = JSON.parse(localStorage.getItem("user"));
   setCurrentUser(user || null)
-  console.log({user})
 
 },[])
 
-console.log({c: currentUser})
+
 
 
   return (
