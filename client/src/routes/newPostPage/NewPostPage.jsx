@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./NewPostPage.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import apiRequest from "../../lib/apiRequest";
+import apiRequest from "../../lib/apiRequest.js";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 
@@ -118,7 +118,7 @@ function NewPostPage() {
               <select name="utilities">
                 <option value="owner">Owner is responsible</option>
                 <option value="tenant">Tenant is responsible</option>
-                <option value="shared">Shared</option>
+                {/* <option value="shared">Shared</option> */}
               </select>
             </div>
             <div className="item">
