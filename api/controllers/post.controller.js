@@ -48,6 +48,7 @@ export const addPostController = async (req, res) => {
                 },
             },
         });
+        console.log("creating a new post", newPost);
         res.status(200).json({newPost});
     } catch (error) {
         console.log(error);
