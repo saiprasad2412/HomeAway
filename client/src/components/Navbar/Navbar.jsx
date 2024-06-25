@@ -21,7 +21,7 @@ function Navbar() {
           <img src="/logo.png" alt="" />
           <span>HomeAway</span>
         </a>
-        <a href="/">Home</a>
+        <Link to="/list">Explore Properties</Link>
         <a href="/">About</a>
         <a href="/">Contact</a>
         <a href="/">Agents</a>

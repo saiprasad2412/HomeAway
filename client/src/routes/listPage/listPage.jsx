@@ -1,6 +1,5 @@
 import React,{Suspense} from 'react'
 import "./listPage.scss"
-import { listData } from '../../lib/dummydata'
 import Filter from '../../components/filter/Filter'
 import Card from '../../components/Card/Card'
 import Map from '../../components/map/Map'

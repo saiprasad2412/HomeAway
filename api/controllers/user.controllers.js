@@ -132,3 +132,40 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: "Failed to delete users!" });
   }
 };
+
+export const savePost= async (req, res) => {
+  const postId= req.body.postId;
+  const tokenUserId= req.userId;
+  try {
+    const savedPost = await prisma.savedPost.findUnique({
+      where:{
+        userId_postId:{
+          postId,
+          userId: tokenUserId
+        }
+      }
+    })
+    if(savedPost){
+      await prisma.savedPost.delete({
+        where:{
+          userId_postId:{
+            postId,
+            userId: tokenUserId
+          }
+        }
+      }) ;
+      res.status(200).json({message:"post removed from saved list"}); 
+    }else{
+      await prisma.savedPost.create({
+        data:{
+          postId,
+          userId: tokenUserId
+        },
+      });
+    res.status(200).json({message:"Post added to saved list"});
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: "Failed to save post"});
+  }
+}

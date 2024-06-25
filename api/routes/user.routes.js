@@ -19,6 +19,7 @@ import {
   deleteUser,
   getUser,
   getUsers,
+  savePost,
   updateUser,
 } from "../controllers/user.controllers.js";
 import {verifyToken} from "../middleware/verifyToken.middleware.js";
@@ -29,7 +30,7 @@ router.get("/", getUsers);
 // router.get("/search/:id", verifyToken, getUser);
 router.put("/:id", verifyToken, updateUser);
 router.delete("/:id", verifyToken, deleteUser);
-// router.post("/save", verifyToken, savePost);
+router.post("/savePost", verifyToken, savePost);
 // router.get("/profilePosts", verifyToken, profilePosts);
 // router.get("/notification", verifyToken, getNotificationNumber);
 
