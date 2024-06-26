@@ -77,5 +77,5 @@ export const loginController=async(req,res)=>{
     }
  };
 export const logOutController=(req,res)=>{ 
-    res.clearCookie("token").status(200).json({message:"Logout successful"});
+    return res.clearCookie("token").status(200).json({message:"Logout successful"});
 }

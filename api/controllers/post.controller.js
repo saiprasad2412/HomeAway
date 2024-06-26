@@ -41,26 +41,35 @@ export const getPostController = async (req, res) => {
         },
       },
     });
+    // console.log("post", post);
 
-    const token = req.cookies?.token;
+    const auth = req.cookies.token;
+    let savedPost=null;
+    if(auth){
+        const decoded = jwt.verify(auth, process.env.ACCESS_TOKEN_SECRET);
+        const userId= decoded.id;
+         savedPost = await prisma.savedPost.findMany({
+          where: {
+            postId: post.id,
+            userId
+          }
+        })
+        console.log("savedPost=========>", savedPost);
+        
+        // post.saved = savedPost.length > 0;
+      }
+      const newPost={...post, savedPost};
+      console.log('mmm ippost===========>',newPost);
+    res.status(200).json({ post:newPost });
+    // await prisma.savedPost.findUnique({
+    //   where: {
+    //     postId: post.id,
+    //     userId: req.userId,
+    //   }
+    // })
+    // res.status(200).json({ post });
 
-    // if (token) {
-    //   jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {
-    //     if (!err) {
-    //       const saved = await prisma.savedPost.findUnique({
-    //         where: {
-    //           userId_postId: {
-    //             postId: id,
-    //             userId: payload.id,
-    //           },
-    //         },
-    //       });
-    //       res.status(200).json({ ...post, isSaved: saved ? true : false });
-    //     }
-    //   });
-    // }
-    res.status(200).json({post });
-    // res.status(200).json({ ...post, isSaved: false });
+    
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get post" });

@@ -9,7 +9,7 @@ import apiRequest from "../../lib/apiRequest";
 
 function SinglePage() {
   const post = useLoaderData();
-  const [saved, setSaved] = useState(post.isSaved);
+  const [saved, setSaved] = useState(post.savedPost?.length > 0);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ function SinglePage() {
     }
     setSaved((prev) => !prev);
     try {
-      await apiRequest.post("/users/savePost", { postId: post.id });
+      await apiRequest.post("/users/savePost", { postId: post.id, isSaved: !saved });
     } catch (err) {
       console.log(err);
       setSaved((prev) => !prev);

@@ -9,20 +9,21 @@ export const AuthContextProvider = ({ children }) => {
 
   const updateUser = (data) => {
     setCurrentUser(data.userInfo);
-    localStorage.setItem("user", JSON.stringify(data.userInfo));
+    localStorage.setItem("user", JSON.stringify(data));
     console.log({data});
+  };
+  const logoutUser = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("user");
   };
 useEffect(()=>{
   const user = JSON.parse(localStorage.getItem("user"));
-  setCurrentUser(user || null)
-
+  setCurrentUser(user?.userInfo || null)
+  console.log("useeffet user",user);
 },[])
 
-
-
-
   return (
-    <AuthContext.Provider value={{ currentUser,updateUser }}>
+    <AuthContext.Provider value={{ currentUser,updateUser,logoutUser }}>
       {children}
     </AuthContext.Provider>
   );

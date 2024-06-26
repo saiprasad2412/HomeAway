@@ -2,6 +2,7 @@ import apiRequest from "./apiRequest.js"
 import { defer } from "react-router-dom";
 export const singlePageLoader = async({request, params}) => {
     const res= await apiRequest("/posts/"+params.id);
+    console.log('loder data==>');
     return res.data.post;
 }
 
@@ -21,3 +22,11 @@ export const listPageLoader = async ({ request, params }) => {
       // chatResponse: chatPromise,
     });
   };
+  // export const isSavedPageLoader = async () => {
+  //   const postPromise = apiRequest("/users/savePost");
+  //   // const chatPromise = apiRequest("/chats");
+  //   return defer({
+  //     postResponse: postPromise,
+  //     // chatResponse: chatPromise,
+  //   });
+  // };

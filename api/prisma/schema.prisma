@@ -76,6 +76,7 @@ model SavedPost{
   post Post @relation(fields: [postId],references: [id])
   userId String @db.ObjectId @unique
   postId String @db.ObjectId @unique
+    isSaved Boolean @default(false)
    createdAt DateTime @default(now())
 
 
