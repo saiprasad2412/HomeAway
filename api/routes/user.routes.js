@@ -28,7 +28,7 @@ import {verifyToken} from "../middleware/verifyToken.middleware.js";
 const router = express.Router();
 
 router.get("/", getUsers);
-// router.get("/search/:id", verifyToken, getUser);
+// router.get("/search/:id", verifyToken, getUser); because of conflict with profileposts
 router.put("/:id", verifyToken, updateUser);
 router.delete("/:id", verifyToken, deleteUser);
 router.post("/savePost", verifyToken, savePost);
