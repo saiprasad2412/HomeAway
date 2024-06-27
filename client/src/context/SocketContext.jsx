@@ -17,7 +17,7 @@ export const SocketContextProvider = ({ children }) => {
   }, [currentUser, socket]);
 
   return (
-    <SocketContext.Provider value={{ socket }}>
+    <SocketContext.Provider value={{socket}}>
       {children}
     </SocketContext.Provider>
   );
